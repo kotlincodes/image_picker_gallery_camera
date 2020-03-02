@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter/material.dart';
 
 class ImagePickerGC{
 
@@ -31,10 +30,10 @@ class ImagePickerGC{
     switch(source){
 
       case ImgSource.Camera:
-        return await ImagePicker.pickImage(source: ImageSource.camera, maxWidth: maxWidth,maxHeight: maxHeight,imageQuality: imageQuality);
+        return await ImagePicker.pickImage(source: ImageSource.camera, maxWidth: maxWidth,maxHeight: maxHeight);
         break;
       case ImgSource.Gallery:
-        return await ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: maxWidth,maxHeight: maxHeight,imageQuality: imageQuality);
+        return await ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: maxWidth,maxHeight: maxHeight);
         break;
       case ImgSource.Both:
          return await showDialog<void>(
@@ -52,7 +51,7 @@ class ImagePickerGC{
 
                       InkWell(
                         onTap: () async {
-                          ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: maxWidth,maxHeight: maxHeight,imageQuality: imageQuality).then((image){
+                          ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: maxWidth,maxHeight: maxHeight).then((image){
                             Navigator.pop(context,image);
 
                           });
@@ -72,7 +71,7 @@ class ImagePickerGC{
                       ),
                       InkWell(
                         onTap: () async {
-                          ImagePicker.pickImage(source: ImageSource.camera, maxWidth: maxWidth,maxHeight: maxHeight,imageQuality: imageQuality).then((image){
+                          ImagePicker.pickImage(source: ImageSource.camera, maxWidth: maxWidth,maxHeight: maxHeight).then((image){
                             Navigator.pop(context,image);
                           });
                         },
