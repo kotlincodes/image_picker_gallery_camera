@@ -1,8 +1,8 @@
 name: image_picker_gallery_camera
 description: Flutter Package to Pick Image From Gallery or Camera
 version: 0.0.1
-author:Sayandh KP<sayandhkp59@gmail.com,kotlincodes@gmail.com>
-homepage:
+author: Sayandh KP<sayandhkp59@gmail.com,kotlincodes@gmail.com>
+homepage: https://github.com/kotlincodes/image_picker_gallery_camera
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -11,9 +11,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  image_picker:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
