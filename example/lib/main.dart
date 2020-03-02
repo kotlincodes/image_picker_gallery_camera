@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Example Image Picker',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Example Image Picker'),
@@ -32,8 +31,14 @@ class _MyHomePageState extends State<MyHomePage> {
   File _image;
 
   Future getImage(ImgSource source) async {
-    var image = await ImagePickerGC.pickImage(context: context,source: source,cameraIcon: Icon(Icons.add,color: Colors.red,));
-    print(image.toString());
+    var image = await ImagePickerGC.pickImage(
+        context: context,
+        source: source,
+        cameraIcon: Icon(
+          Icons.add,
+          color: Colors.red,
+        ),//cameraIcon and galleryIcon can change. If no icon provided default icon will be present
+    );
     setState(() {
       _image = image;
     });
@@ -41,47 +46,49 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Center(
-
         child: SingleChildScrollView(
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
                 width: 300,
                 child: RaisedButton(
-                  onPressed: ()=>getImage(ImgSource.Gallery),
+                  onPressed: () => getImage(ImgSource.Gallery),
                   color: Colors.blue,
-                  child: Text("From Gallery".toUpperCase(),style: TextStyle(color: Colors.white),),
-
+                  child: Text(
+                    "From Gallery".toUpperCase(),
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
               Container(
                 width: 300,
                 child: RaisedButton(
-                  onPressed: ()=>getImage(ImgSource.Camera),
+                  onPressed: () => getImage(ImgSource.Camera),
                   color: Colors.deepPurple,
-                  child: Text("From Camera".toUpperCase(),style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    "From Camera".toUpperCase(),
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
               Container(
                 width: 300,
                 child: RaisedButton(
-
-                  onPressed: ()=>getImage(ImgSource.Both),
+                  onPressed: () => getImage(ImgSource.Both),
                   color: Colors.red,
-                  child: Text("Both".toUpperCase(),style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    "Both".toUpperCase(),
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
-              _image!=null?Image.file(_image):Container(),
-
+              _image != null ? Image.file(_image) : Container(),
             ],
           ),
         ),
