@@ -23,6 +23,10 @@ Add the following keys to your Info.plist file, located in <project root>/ios/Ru
 
 No configuration required - the plugin should work out of the box.
 
+### Final Output
+
+![](image_picker_flutter.gif)
+
 ## Example
 
 ```
