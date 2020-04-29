@@ -16,6 +16,7 @@ class ImagePickerGC {
       Icon galleryIcon,
       Widget cameraText,
       Widget galleryText,
+      bool barrierDismissible = false,
       int imageQuality}) async {
     assert(source != null);
     assert(imageQuality == null || (imageQuality >= 0 && imageQuality <= 100));
@@ -44,12 +45,12 @@ class ImagePickerGC {
       case ImgSource.Both:
         return await showDialog<void>(
           context: context,
-          barrierDismissible: false, // user must tap button!
+          barrierDismissible: barrierDismissible, // user must tap button!
           builder: (BuildContext context) {
             return AlertDialog(
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
+                  borderRadius: BorderRadius.all(Radius.circular(6))),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -58,7 +59,8 @@ class ImagePickerGC {
                       ImagePicker.pickImage(
                               source: ImageSource.gallery,
                               maxWidth: maxWidth,
-                              maxHeight: maxHeight)
+                              maxHeight: maxHeight,
+                              imageQuality: imageQuality)
                           .then((image) {
                         Navigator.pop(context, image);
                       });
