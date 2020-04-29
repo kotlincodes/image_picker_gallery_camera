@@ -14,8 +14,8 @@ class ImagePickerGC {
       double maxHeight,
       Icon cameraIcon,
       Icon galleryIcon,
-      Widget cameraWidget,
-      Widget galleryWidget,
+      Widget cameraText,
+      Widget galleryText,
       int imageQuality}) async {
     assert(source != null);
     assert(imageQuality == null || (imageQuality >= 0 && imageQuality <= 100));
@@ -65,7 +65,7 @@ class ImagePickerGC {
                     },
                     child: Container(
                       child: ListTile(
-                          title: galleryWidget ?? ("Gallery"),
+                          title: galleryText ?? ("Gallery"),
                           leading: galleryIcon != null
                               ? galleryIcon
                               : Icon(
@@ -91,7 +91,7 @@ class ImagePickerGC {
                     },
                     child: Container(
                       child: ListTile(
-                          title: cameraWidget ?? Text("Camera"),
+                          title: cameraText ?? Text("Camera"),
                           leading: cameraIcon != null
                               ? cameraIcon
                               : Icon(
