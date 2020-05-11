@@ -35,9 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         source: source,
         cameraIcon: Icon(
-          Icons.add,
+          Icons.camera_alt,
           color: Colors.red,
         ),//cameraIcon and galleryIcon can change. If no icon provided default icon will be present
+      cameraText: Text("From Camera",style: TextStyle(color: Colors.red),),
+      galleryText: Text("From Gallery",style: TextStyle(color: Colors.blue),)
     );
     setState(() {
       _image = image;

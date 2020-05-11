@@ -67,7 +67,7 @@ class ImagePickerGC {
                     },
                     child: Container(
                       child: ListTile(
-                          title: galleryText ?? ("Gallery"),
+                          title: galleryText ?? Text("Gallery"),
                           leading: galleryIcon != null
                               ? galleryIcon
                               : Icon(
