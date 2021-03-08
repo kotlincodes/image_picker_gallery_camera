@@ -29,15 +29,17 @@ class ImagePickerGC {
       throw ArgumentError.value(maxHeight, 'maxHeight cannot be negative');
     }
 
+    var imgPicker = ImagePicker();
+
     switch (source) {
       case ImgSource.Camera:
-        return await ImagePicker.pickImage(
+        return await imgPicker.getImage(
             source: ImageSource.camera,
             maxWidth: maxWidth,
             maxHeight: maxHeight);
         break;
       case ImgSource.Gallery:
-        return await ImagePicker.pickImage(
+        return await imgPicker.getImage(
             source: ImageSource.gallery,
             maxWidth: maxWidth,
             maxHeight: maxHeight);
@@ -56,7 +58,7 @@ class ImagePickerGC {
                 children: <Widget>[
                   InkWell(
                     onTap: () async {
-                      ImagePicker.pickImage(
+                      imgPicker.getImage(
                               source: ImageSource.gallery,
                               maxWidth: maxWidth,
                               maxHeight: maxHeight,
@@ -83,7 +85,7 @@ class ImagePickerGC {
                   ),
                   InkWell(
                     onTap: () async {
-                      ImagePicker.pickImage(
+                      imgPicker.getImage(
                               source: ImageSource.camera,
                               maxWidth: maxWidth,
                               maxHeight: maxHeight)
