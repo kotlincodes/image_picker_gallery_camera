@@ -5,13 +5,13 @@ author: Sayandh KP<kotlincodes@gmail.com,sayandhkp59@gmail.com>
 homepage: https://github.com/kotlincodes/image_picker_gallery_camera
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  image_picker: ^0.6.6+1
+  image_picker: ^0.7.4
 
 dev_dependencies:
   flutter_test:
