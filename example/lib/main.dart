@@ -37,10 +37,15 @@ class _MyHomePageState extends State<MyHomePage> {
         cameraIcon: Icon(
           Icons.camera_alt,
           color: Colors.red,
-        ),//cameraIcon and galleryIcon can change. If no icon provided default icon will be present
-      cameraText: Text("From Camera",style: TextStyle(color: Colors.red),),
-      galleryText: Text("From Gallery",style: TextStyle(color: Colors.blue),)
-    );
+        ), //cameraIcon and galleryIcon can change. If no icon provided default icon will be present
+        cameraText: Text(
+          "From Camera",
+          style: TextStyle(color: Colors.red),
+        ),
+        galleryText: Text(
+          "From Gallery",
+          style: TextStyle(color: Colors.blue),
+        ));
     setState(() {
       _image = image;
     });
@@ -59,9 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Container(
                 width: 300,
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () => getImage(ImgSource.Gallery),
-                  color: Colors.blue,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                  ),
                   child: Text(
                     "From Gallery".toUpperCase(),
                     style: TextStyle(color: Colors.white),
@@ -70,9 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 width: 300,
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () => getImage(ImgSource.Camera),
-                  color: Colors.deepPurple,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.deepPurple,
+                  ),
                   child: Text(
                     "From Camera".toUpperCase(),
                     style: TextStyle(color: Colors.white),
@@ -81,9 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 width: 300,
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () => getImage(ImgSource.Both),
-                  color: Colors.red,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                  ),
                   child: Text(
                     "Both".toUpperCase(),
                     style: TextStyle(color: Colors.white),

@@ -8,17 +8,16 @@ import 'package:image_picker/image_picker.dart';
 
 class ImagePickerGC {
   static Future pickImage(
-      {@required BuildContext context,
-      @required ImgSource source,
-      double maxWidth,
-      double maxHeight,
-      Icon cameraIcon,
-      Icon galleryIcon,
-      Widget cameraText,
-      Widget galleryText,
+      {required BuildContext context,
+      required ImgSource source,
+      double? maxWidth,
+      double? maxHeight,
+      Icon? cameraIcon,
+      Icon? galleryIcon,
+      Widget? cameraText,
+      Widget? galleryText,
       bool barrierDismissible = false,
-      int imageQuality}) async {
-    assert(source != null);
+      int? imageQuality}) async {
     assert(imageQuality == null || (imageQuality >= 0 && imageQuality <= 100));
 
     if (maxWidth != null && maxWidth < 0) {
@@ -31,17 +30,15 @@ class ImagePickerGC {
 
     switch (source) {
       case ImgSource.Camera:
-        return await ImagePicker.pickImage(
+        return await ImagePicker().getImage(
             source: ImageSource.camera,
             maxWidth: maxWidth,
             maxHeight: maxHeight);
-        break;
       case ImgSource.Gallery:
-        return await ImagePicker.pickImage(
+        return await ImagePicker().getImage(
             source: ImageSource.gallery,
             maxWidth: maxWidth,
             maxHeight: maxHeight);
-        break;
       case ImgSource.Both:
         return await showDialog<void>(
           context: context,
@@ -56,7 +53,7 @@ class ImagePickerGC {
                 children: <Widget>[
                   InkWell(
                     onTap: () async {
-                      ImagePicker.pickImage(
+                      ImagePicker().getImage(
                               source: ImageSource.gallery,
                               maxWidth: maxWidth,
                               maxHeight: maxHeight,
@@ -83,7 +80,7 @@ class ImagePickerGC {
                   ),
                   InkWell(
                     onTap: () async {
-                      ImagePicker.pickImage(
+                      ImagePicker().getImage(
                               source: ImageSource.camera,
                               maxWidth: maxWidth,
                               maxHeight: maxHeight)
