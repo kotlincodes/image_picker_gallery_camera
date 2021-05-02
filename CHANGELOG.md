@@ -1,3 +1,3 @@
-## [0.1.3] - 03-03-2020.
+## [0.2.1] - 21-04-2021.
 
-* Image Picker Package for flutter, having option to select both camera and gallery using a simple view
+* Null-Safety Added

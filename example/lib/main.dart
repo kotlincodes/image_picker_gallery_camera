@@ -28,12 +28,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  File _image;
+  var _image;
 
   Future getImage(ImgSource source) async {
     var image = await ImagePickerGC.pickImage(
+        enableCloseButton: true,
+        closeIcon: Icon(
+          Icons.close,
+          color: Colors.red,
+          size: 12,
+        ),
         context: context,
         source: source,
+        barrierDismissible: true,
         cameraIcon: Icon(
           Icons.camera_alt,
           color: Colors.red,
@@ -101,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              _image != null ? Image.file(_image) : Container(),
+              _image != null ? Image.file(File(_image.path)) : Container(),
             ],
           ),
         ),

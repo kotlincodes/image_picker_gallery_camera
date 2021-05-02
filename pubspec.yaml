@@ -1,7 +1,7 @@
 name: image_picker_gallery_camera
 description: Flutter Package to Pick Image From Gallery or Camera. This Package supports picking image from Camera,Gallery and Both Camera abd Gallery.
-version: 0.1.6
-author: Sayandh KP<kotlincodes@gmail.com,sayandhkp59@gmail.com>
+version: 0.2.1
+# author: Sayandh KP<kotlincodes@gmail.com,sayandhkp59@gmail.com>
 homepage: https://github.com/kotlincodes/image_picker_gallery_camera
 
 environment:

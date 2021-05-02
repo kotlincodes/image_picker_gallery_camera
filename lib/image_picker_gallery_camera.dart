@@ -10,6 +10,7 @@ class ImagePickerGC {
   static Future pickImage(
       {required BuildContext context,
       required ImgSource source,
+      bool? enableCloseButton,
       double? maxWidth,
       double? maxHeight,
       Icon? cameraIcon,
@@ -17,6 +18,7 @@ class ImagePickerGC {
       Widget? cameraText,
       Widget? galleryText,
       bool barrierDismissible = false,
+      Icon? closeIcon,
       int? imageQuality}) async {
     assert(imageQuality == null || (imageQuality >= 0 && imageQuality <= 100));
 
@@ -51,9 +53,24 @@ class ImagePickerGC {
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
+                  enableCloseButton == true
+                      ? GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Align(
+                              alignment: Alignment.topRight,
+                              child: closeIcon ??
+                                  Icon(
+                                    Icons.close,
+                                    size: 14,
+                                  )),
+                        )
+                      : Container(),
                   InkWell(
                     onTap: () async {
-                      ImagePicker().getImage(
+                      ImagePicker()
+                          .getImage(
                               source: ImageSource.gallery,
                               maxWidth: maxWidth,
                               maxHeight: maxHeight,
@@ -80,7 +97,8 @@ class ImagePickerGC {
                   ),
                   InkWell(
                     onTap: () async {
-                      ImagePicker().getImage(
+                      ImagePicker()
+                          .getImage(
                               source: ImageSource.camera,
                               maxWidth: maxWidth,
                               maxHeight: maxHeight)
