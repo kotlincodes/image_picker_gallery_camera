@@ -2,7 +2,6 @@ library image_picker_gallery_camera;
 
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -101,7 +100,8 @@ class ImagePickerGC {
                           .getImage(
                               source: ImageSource.camera,
                               maxWidth: maxWidth,
-                              maxHeight: maxHeight)
+                              maxHeight: maxHeight,
+                              imageQuality: imageQuality)
                           .then((image) {
                         Navigator.pop(context, image);
                       });
