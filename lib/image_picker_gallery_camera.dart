@@ -2,25 +2,27 @@ library image_picker_gallery_camera;
 
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerGC {
-  static Future pickImage(
-      {required BuildContext context,
-      required ImgSource source,
-      bool? enableCloseButton,
-      double? maxWidth,
-      double? maxHeight,
-      Icon? cameraIcon,
-      Icon? galleryIcon,
-      Widget? cameraText,
-      Widget? galleryText,
-      bool barrierDismissible = false,
-      Icon? closeIcon,
-      int? imageQuality}) async {
-    assert(imageQuality == null || (imageQuality >= 0 && imageQuality <= 100));
+  static Future pickImage({
+    Icon? closeIcon,
+    double? maxWidth,
+    Icon? cameraIcon,
+    int? galleryImageQuality,
+    int? cameraImageQuality,
+    double? maxHeight,
+    Icon? galleryIcon,
+    Widget? cameraText,
+    Widget? galleryText,
+    bool enableCloseButton = false,
+    required ImgSource source,
+    required BuildContext context,
+    bool barrierDismissible = false,
+  }) async {
+    assert(galleryImageQuality == null ||
+        (galleryImageQuality >= 0 && galleryImageQuality <= 100));
 
     if (maxWidth != null && maxWidth < 0) {
       throw ArgumentError.value(maxWidth, 'maxWidth cannot be negative');
@@ -32,15 +34,17 @@ class ImagePickerGC {
 
     switch (source) {
       case ImgSource.Camera:
-        return await ImagePicker().getImage(
-            source: ImageSource.camera,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight);
+        return await ImagePicker().pickImage(
+          maxWidth: maxWidth,
+          maxHeight: maxHeight,
+          source: ImageSource.camera,
+        );
       case ImgSource.Gallery:
-        return await ImagePicker().getImage(
-            source: ImageSource.gallery,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight);
+        return await ImagePicker().pickImage(
+          maxWidth: maxWidth,
+          maxHeight: maxHeight,
+          source: ImageSource.gallery,
+        );
       case ImgSource.Both:
         return await showDialog<void>(
           context: context,
@@ -49,45 +53,46 @@ class ImagePickerGC {
             return AlertDialog(
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(6))),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(6),
+                ),
+              ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  enableCloseButton == true
-                      ? GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Align(
-                              alignment: Alignment.topRight,
-                              child: closeIcon ??
-                                  Icon(
-                                    Icons.close,
-                                    size: 14,
-                                  )),
-                        )
-                      : Container(),
+                  if (enableCloseButton)
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: closeIcon ??
+                            Icon(
+                              Icons.close,
+                              size: 14,
+                            ),
+                      ),
+                    ),
                   InkWell(
                     onTap: () async {
-                      ImagePicker()
-                          .getImage(
-                              source: ImageSource.gallery,
-                              maxWidth: maxWidth,
-                              maxHeight: maxHeight,
-                              imageQuality: imageQuality)
-                          .then((image) {
-                        Navigator.pop(context, image);
-                      });
+                      XFile? image = await ImagePicker().pickImage(
+                        maxWidth: maxWidth,
+                        maxHeight: maxHeight,
+                        source: ImageSource.gallery,
+                        imageQuality: galleryImageQuality,
+                      );
+                      Navigator.pop(context, image);
                     },
                     child: Container(
                       child: ListTile(
-                          title: galleryText ?? Text("Gallery"),
-                          leading: galleryIcon != null
-                              ? galleryIcon
-                              : Icon(
-                                  Icons.image,
-                                  color: Colors.deepPurple,
-                                )),
+                        title: galleryText ?? Text("Gallery"),
+                        leading: galleryIcon ??
+                            Icon(
+                              Icons.image,
+                              color: Colors.deepPurple,
+                            ),
+                      ),
                     ),
                   ),
                   Container(
@@ -97,24 +102,23 @@ class ImagePickerGC {
                   ),
                   InkWell(
                     onTap: () async {
-                      ImagePicker()
-                          .getImage(
-                              source: ImageSource.camera,
-                              maxWidth: maxWidth,
-                              maxHeight: maxHeight)
-                          .then((image) {
-                        Navigator.pop(context, image);
-                      });
+                      XFile? image = await ImagePicker().pickImage(
+                        maxWidth: maxWidth,
+                        maxHeight: maxHeight,
+                        source: ImageSource.camera,
+                        imageQuality: cameraImageQuality,
+                      );
+                      Navigator.pop(context, image);
                     },
                     child: Container(
                       child: ListTile(
-                          title: cameraText ?? Text("Camera"),
-                          leading: cameraIcon != null
-                              ? cameraIcon
-                              : Icon(
-                                  Icons.camera,
-                                  color: Colors.deepPurple,
-                                )),
+                        title: cameraText ?? Text("Camera"),
+                        leading: cameraIcon ??
+                            Icon(
+                              Icons.camera,
+                              color: Colors.deepPurple,
+                            ),
+                      ),
                     ),
                   ),
                 ],

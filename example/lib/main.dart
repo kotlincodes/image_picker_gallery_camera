@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                   onPressed: () => getImage(ImgSource.Gallery),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
+                    backgroundColor: Colors.blue,
                   ),
                   child: Text(
                     "From Gallery".toUpperCase(),
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                   onPressed: () => getImage(ImgSource.Camera),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.deepPurple,
+                    backgroundColor: Colors.deepPurple,
                   ),
                   child: Text(
                     "From Camera".toUpperCase(),
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                   onPressed: () => getImage(ImgSource.Both),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                   ),
                   child: Text(
                     "Both".toUpperCase(),
